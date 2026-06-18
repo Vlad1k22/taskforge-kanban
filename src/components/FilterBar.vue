@@ -24,21 +24,21 @@ const emit = defineEmits(['update:filters', 'clear']);
 </script>
 
 <template>
-  <section class="filter-bar" aria-label="Р¤РёР»СЊС‚СЂС‹ Р·Р°РґР°С‡">
+  <section class="filter-bar" aria-label="Фильтры задач">
     <label class="search-field">
       <Search :size="19" aria-hidden="true" />
       <input
         :value="filters.search"
         type="search"
-        placeholder="РџРѕРёСЃРє"
+        placeholder="Поиск"
         @input="emit('update:filters', { ...filters, search: $event.target.value })"
       />
     </label>
 
     <label>
-      <span>РџСЂРёРѕСЂРёС‚РµС‚</span>
+      <span>Приоритет</span>
       <select :value="filters.priority" @change="emit('update:filters', { ...filters, priority: $event.target.value })">
-        <option value="all">Р’СЃРµ</option>
+        <option value="all">Все</option>
         <option v-for="priority in priorities" :key="priority.value" :value="priority.value">
           {{ priority.label }}
         </option>
@@ -46,9 +46,9 @@ const emit = defineEmits(['update:filters', 'clear']);
     </label>
 
     <label>
-      <span>РСЃРїРѕР»РЅРёС‚РµР»СЊ</span>
+      <span>Исполнитель</span>
       <select :value="filters.assignee" @change="emit('update:filters', { ...filters, assignee: $event.target.value })">
-        <option value="all">Р’СЃРµ</option>
+        <option value="all">Все</option>
         <option v-for="assignee in assignees" :key="assignee" :value="assignee">
           {{ assignee }}
         </option>
@@ -56,9 +56,9 @@ const emit = defineEmits(['update:filters', 'clear']);
     </label>
 
     <label>
-      <span>РўРµРі</span>
+      <span>Тег</span>
       <select :value="filters.tag" @change="emit('update:filters', { ...filters, tag: $event.target.value })">
-        <option value="all">Р’СЃРµ</option>
+        <option value="all">Все</option>
         <option v-for="tag in tags" :key="tag" :value="tag">
           {{ tag }}
         </option>
@@ -71,10 +71,10 @@ const emit = defineEmits(['update:filters', 'clear']);
         type="checkbox"
         @change="emit('update:filters', { ...filters, onlyOverdue: $event.target.checked })"
       />
-      <span>РџСЂРѕСЃСЂРѕС‡РµРЅРЅС‹Рµ</span>
+      <span>Просроченные</span>
     </label>
 
-    <button class="icon-button" type="button" @click="emit('clear')" aria-label="РћС‡РёСЃС‚РёС‚СЊ С„РёР»СЊС‚СЂС‹" title="РћС‡РёСЃС‚РёС‚СЊ С„РёР»СЊС‚СЂС‹">
+    <button class="icon-button" type="button" @click="emit('clear')" aria-label="Очистить фильтры" title="Очистить фильтры">
       <X :size="20" aria-hidden="true" />
     </button>
   </section>

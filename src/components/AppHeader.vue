@@ -17,7 +17,7 @@ const emit = defineEmits(['create-task', 'reset-board']);
       <span class="brand__mark">TF</span>
       <span>
         <strong>TaskForge</strong>
-        <small>{{ totalTasks }} Р·Р°РґР°С‡</small>
+        <small>{{ totalTasks }} задач</small>
       </span>
     </a>
 
@@ -32,12 +32,12 @@ const emit = defineEmits(['create-task', 'reset-board']);
       >
         <ExternalLink :size="20" aria-hidden="true" />
       </a>
-      <button class="icon-button" type="button" @click="emit('reset-board')" aria-label="РЎР±СЂРѕСЃРёС‚СЊ РґРѕСЃРєСѓ" title="РЎР±СЂРѕСЃРёС‚СЊ РґРѕСЃРєСѓ">
+      <button class="icon-button" type="button" @click="emit('reset-board')" aria-label="Сбросить доску" title="Сбросить доску">
         <RotateCcw :size="20" aria-hidden="true" />
       </button>
       <button class="button button--primary" type="button" @click="emit('create-task')">
         <Plus :size="19" aria-hidden="true" />
-        РќРѕРІР°СЏ Р·Р°РґР°С‡Р°
+        Новая задача
       </button>
     </div>
   </header>

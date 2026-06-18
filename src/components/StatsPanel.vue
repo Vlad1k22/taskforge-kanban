@@ -8,21 +8,21 @@ defineProps({
 </script>
 
 <template>
-  <section class="stats-panel" aria-label="РЎРІРѕРґРєР° РїРѕ Р·Р°РґР°С‡Р°Рј">
+  <section class="stats-panel" aria-label="Сводка по задачам">
     <article>
-      <span>Р’СЃРµРіРѕ</span>
+      <span>Всего</span>
       <strong>{{ stats.total }}</strong>
     </article>
     <article>
-      <span>Р’ СЂР°Р±РѕС‚Рµ</span>
+      <span>В работе</span>
       <strong>{{ stats.active }}</strong>
     </article>
     <article>
-      <span>РџСЂРѕСЃСЂРѕС‡РµРЅРѕ</span>
+      <span>Просрочено</span>
       <strong>{{ stats.overdue }}</strong>
     </article>
     <article>
-      <span>РџСЂРѕРіСЂРµСЃСЃ</span>
+      <span>Прогресс</span>
       <strong>{{ stats.progress }}%</strong>
     </article>
   </section>

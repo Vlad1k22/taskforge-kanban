@@ -169,7 +169,7 @@ function clearFilters() {
 }
 
 function resetBoard() {
-  const confirmed = window.confirm('РЎР±СЂРѕСЃРёС‚СЊ РґРѕСЃРєСѓ Рє РґРµРјРѕ-РґР°РЅРЅС‹Рј?');
+  const confirmed = window.confirm('Сбросить доску к демо-данным?');
 
   if (!confirmed) {
     return;
@@ -192,7 +192,7 @@ function resetBoard() {
           <h1 id="page-title">TaskForge</h1>
         </div>
         <p>
-          РЈРїСЂР°РІР»РµРЅРёРµ Р·Р°РґР°С‡Р°РјРё РєРѕРјР°РЅРґС‹ СЃ С„РёР»СЊС‚СЂР°РјРё, РґРµРґР»Р°Р№РЅР°РјРё, С‡РµРєР»РёСЃС‚Р°РјРё Рё СЃРѕС…СЂР°РЅРµРЅРёРµРј СЃРѕСЃС‚РѕСЏРЅРёСЏ.
+          Управление задачами команды с фильтрами, дедлайнами, чеклистами и сохранением состояния.
         </p>
       </section>
 
@@ -207,7 +207,7 @@ function resetBoard() {
         @clear="clearFilters"
       />
 
-      <section class="board" aria-label="Kanban РґРѕСЃРєР°">
+      <section class="board" aria-label="Kanban доска">
         <BoardColumn
           v-for="column in columns"
           :key="column.id"

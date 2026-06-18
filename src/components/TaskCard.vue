@@ -42,7 +42,7 @@ function completionPercent() {
     <div class="task-card__topline">
       <GripVertical :size="18" aria-hidden="true" />
       <span>{{ priorityLabel }}</span>
-      <button class="icon-button icon-button--small" type="button" @click="emit('edit', task)" aria-label="Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ Р·Р°РґР°С‡Сѓ">
+      <button class="icon-button icon-button--small" type="button" @click="emit('edit', task)" aria-label="Редактировать задачу">
         <Pencil :size="16" aria-hidden="true" />
       </button>
     </div>
@@ -50,14 +50,14 @@ function completionPercent() {
     <h3>{{ task.title }}</h3>
     <p>{{ task.description }}</p>
 
-    <ul class="tag-list" :aria-label="`РўРµРіРё Р·Р°РґР°С‡Рё ${task.title}`">
+    <ul class="tag-list" :aria-label="`Теги задачи ${task.title}`">
       <li v-for="tag in task.tags" :key="tag">{{ tag }}</li>
     </ul>
 
     <div class="task-card__meta">
       <span :class="{ danger: isOverdue }">
         <CalendarClock :size="16" aria-hidden="true" />
-        {{ task.dueDate || 'Р‘РµР· РґР°С‚С‹' }}
+        {{ task.dueDate || 'Без даты' }}
       </span>
       <span>
         <CheckCircle2 :size="16" aria-hidden="true" />
@@ -67,7 +67,7 @@ function completionPercent() {
 
     <div class="task-card__footer">
       <strong>{{ task.assignee }}</strong>
-      <span>{{ task.estimate }} С‡</span>
+      <span>{{ task.estimate }} ч</span>
     </div>
   </article>
 </template>
