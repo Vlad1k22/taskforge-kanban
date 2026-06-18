@@ -1,0 +1,96 @@
+export const columns = [
+  { id: 'backlog', title: 'Бэклог', accent: '#7c5cff' },
+  { id: 'todo', title: 'К работе', accent: '#2f80ed' },
+  { id: 'progress', title: 'В процессе', accent: '#ffb020' },
+  { id: 'review', title: 'Проверка', accent: '#ff7a59' },
+  { id: 'done', title: 'Готово', accent: '#34a853' },
+];
+
+export const initialTasks = [
+  {
+    id: 'task-1',
+    columnId: 'backlog',
+    title: 'Собрать требования к кабинету',
+    description: 'Описать роли, основные сценарии и ограничения перед стартом верстки.',
+    priority: 'high',
+    assignee: 'Влад',
+    dueDate: '2026-06-24',
+    estimate: 4,
+    tags: ['аналитика', 'ui'],
+    createdAt: '2026-06-16T10:00:00.000Z',
+    subtasks: [
+      { id: 'sub-1', title: 'Список ролей', done: true },
+      { id: 'sub-2', title: 'Карта экранов', done: false },
+    ],
+  },
+  {
+    id: 'task-2',
+    columnId: 'todo',
+    title: 'Сверстать адаптивный header',
+    description: 'Сделать desktop и mobile состояния, проверить кликабельные зоны.',
+    priority: 'medium',
+    assignee: 'Аня',
+    dueDate: '2026-06-22',
+    estimate: 3,
+    tags: ['html', 'css'],
+    createdAt: '2026-06-17T12:00:00.000Z',
+    subtasks: [
+      { id: 'sub-3', title: 'Desktop', done: true },
+      { id: 'sub-4', title: 'Mobile menu', done: false },
+    ],
+  },
+  {
+    id: 'task-3',
+    columnId: 'progress',
+    title: 'Добавить фильтры задач',
+    description: 'Поиск по названию, фильтр по исполнителю, тегам и приоритету.',
+    priority: 'high',
+    assignee: 'Влад',
+    dueDate: '2026-06-21',
+    estimate: 5,
+    tags: ['vue', 'js'],
+    createdAt: '2026-06-18T08:00:00.000Z',
+    subtasks: [
+      { id: 'sub-5', title: 'Поиск', done: true },
+      { id: 'sub-6', title: 'Фильтр по тегам', done: false },
+    ],
+  },
+  {
+    id: 'task-4',
+    columnId: 'review',
+    title: 'Проверить форму создания',
+    description: 'Убедиться, что пустые поля не сохраняются и ошибки понятны.',
+    priority: 'low',
+    assignee: 'Илья',
+    dueDate: '2026-06-20',
+    estimate: 2,
+    tags: ['qa', 'forms'],
+    createdAt: '2026-06-18T09:30:00.000Z',
+    subtasks: [
+      { id: 'sub-7', title: 'Пустое название', done: true },
+      { id: 'sub-8', title: 'Дата дедлайна', done: true },
+    ],
+  },
+  {
+    id: 'task-5',
+    columnId: 'done',
+    title: 'Подготовить README',
+    description: 'Описать стек, запуск, функции и планы развития.',
+    priority: 'medium',
+    assignee: 'Влад',
+    dueDate: '2026-06-19',
+    estimate: 2,
+    tags: ['docs', 'git'],
+    createdAt: '2026-06-15T14:00:00.000Z',
+    subtasks: [
+      { id: 'sub-9', title: 'Описание', done: true },
+      { id: 'sub-10', title: 'Инструкция запуска', done: true },
+    ],
+  },
+];
+
+export const priorities = [
+  { value: 'low', label: 'Низкий' },
+  { value: 'medium', label: 'Средний' },
+  { value: 'high', label: 'Высокий' },
+];
