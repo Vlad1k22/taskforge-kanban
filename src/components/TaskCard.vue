@@ -35,6 +35,7 @@ function completionPercent() {
 <template>
   <article
     class="task-card"
+    :aria-label="task.title"
     :class="[`task-card--${task.priority}`, { 'task-card--overdue': isOverdue }]"
     draggable="true"
     @dragstart="emit('drag-start', task.id)"

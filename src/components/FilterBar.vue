@@ -29,6 +29,7 @@ const emit = defineEmits(['update:filters', 'clear']);
       <Search :size="19" aria-hidden="true" />
       <input
         :value="filters.search"
+        aria-label="Поиск задач"
         type="search"
         placeholder="Поиск"
         @input="emit('update:filters', { ...filters, search: $event.target.value })"

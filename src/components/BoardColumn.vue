@@ -31,6 +31,7 @@ const emit = defineEmits(['create-task', 'edit-task', 'drag-start', 'task-drop']
 <template>
   <section
     class="board-column"
+    :aria-label="column.title"
     :style="{ '--column-accent': column.accent }"
     @dragover.prevent
     @drop="emit('task-drop', column.id)"

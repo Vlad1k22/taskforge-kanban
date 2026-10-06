@@ -107,7 +107,7 @@ function openCreateModal(columnId = 'backlog') {
 }
 
 function openEditModal(task) {
-  selectedTask.value = structuredClone(task);
+  selectedTask.value = task;
   modalOpen.value = true;
 }
 

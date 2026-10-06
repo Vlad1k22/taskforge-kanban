@@ -22,7 +22,24 @@ TaskForge Kanban - интерактивная Kanban-доска на Vue 3 дл�
 - HTML
 - CSS
 - @lucide/vue
+- Playwright Test (e2e)
 - GitHub Actions
+
+## Запуск и проверка
+
+```bash
+npm ci
+npm run dev
+```
+
+Приложение откроется по адресу, который покажет Vite. Для e2e-тестов нужен браузер Chromium:
+
+```bash
+npx playwright install chromium
+npm run test:e2e
+```
+
+Playwright сам запускает локальный Vite-сервер на отдельном порту. Пять сценариев проверяют валидацию и создание задачи, сохранение после перезагрузки, редактирование и удаление, поиск и фильтр, перенос между колонками и сброс с подтверждением. В GitHub Actions тесты запускаются на каждом push в `main` и в pull request.
 
 ## Что показывает проект
 
@@ -54,4 +71,7 @@ src/
   App.vue
   main.js
   styles.css
+tests/e2e/
+  board.spec.js
+playwright.config.js
 ```
