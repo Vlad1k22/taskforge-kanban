@@ -1,0 +1,70 @@
+name: Backend and full-stack tests
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+
+jobs:
+  api-and-browser:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: taskforge
+          POSTGRES_PASSWORD: taskforge
+          POSTGRES_DB: taskforge
+        ports:
+          - 5434:5432
+        options: >-
+          --health-cmd "pg_isready -U taskforge -d taskforge"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run check:server
+      - run: npm run build:server
+      - run: npm run test:api
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e:full
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: fullstack-test-report
+          path: |
+            playwright-full-report/
+            test-results-fullstack/
+          retention-days: 7
+
+  docker-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: cp .env.example .env
+      - run: docker compose up --build -d --wait --wait-timeout 120
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e:full
+        env:
+          FULL_BASE_URL: http://127.0.0.1:3001/taskforge-kanban/
+      - run: docker compose logs --no-color
+        if: always()
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: docker-test-report
+          path: |
+            playwright-full-report/
+            test-results-fullstack/
+          retention-days: 7
+      - run: docker compose down
+        if: always()

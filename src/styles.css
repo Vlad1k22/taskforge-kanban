@@ -58,6 +58,24 @@ button:disabled {
   opacity: 0.55;
 }
 
+.auth-panel { width: min(420px, 100%); margin: 48px auto; padding: 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
+.auth-panel h1 { font-size: 28px; margin-bottom: 20px; }
+.auth-tabs { display: flex; margin-bottom: 20px; border-bottom: 1px solid var(--line); }
+.auth-tabs button { flex: 1; border: 0; border-bottom: 2px solid transparent; padding: 10px; background: transparent; }
+.auth-tabs button[aria-selected="true"] { border-bottom-color: var(--blue); color: var(--blue); }
+.auth-form { display: grid; gap: 16px; }
+.auth-form label, .workspace-controls label, .new-board-form label { display: grid; gap: 6px; min-width: 0; }
+.auth-form input, .workspace-controls select, .new-board-form input { min-width: 0; width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 6px; background: white; }
+.workspace-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; min-width: 0; }
+.workspace-controls label { flex: 1 1 160px; max-width: 300px; }
+.connection-status { font-size: 13px; color: var(--muted); padding: 10px 0; }
+.connection-status.connected { color: #227438; }
+.workspace-status { padding: 10px 0; color: var(--muted); }
+.workspace-error { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; color: #a92323; background: #fff2f2; margin: 12px 0; }
+.new-board-form { display: flex; align-items: end; flex-wrap: wrap; gap: 10px; padding: 12px 0; }
+.new-board-form label { flex: 1 1 200px; max-width: 420px; }
+.session-user { max-width: 180px; overflow-wrap: anywhere; }
+
 a {
   color: inherit;
   text-decoration: none;

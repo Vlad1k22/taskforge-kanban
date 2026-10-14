@@ -4,3 +4,9 @@ dist
 *.local
 playwright-report
 test-results
+test-results-fullstack
+playwright-full-report
+.env
+dist-server
+.local-postgres*
+.local-server*

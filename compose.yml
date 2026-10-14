@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: taskforge
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-taskforge}
+      POSTGRES_DB: taskforge
+    ports:
+      - "127.0.0.1:5434:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U taskforge -d taskforge"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://taskforge:${POSTGRES_PASSWORD:-taskforge}@db:5432/taskforge
+      SESSION_SECRET: ${SESSION_SECRET:?Copy .env.example to .env and configure SESSION_SECRET}
+      APP_ORIGINS: ${APP_ORIGINS:-http://localhost:3001,http://127.0.0.1:3001}
+      SECURE_COOKIE: ${SECURE_COOKIE:-false}
+    ports:
+      - "127.0.0.1:3001:3001"
+    depends_on:
+      db:
+        condition: service_healthy
+volumes:
+  postgres-data:

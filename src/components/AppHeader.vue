@@ -1,14 +1,17 @@
 <script setup>
-import { ExternalLink, Plus, RotateCcw } from '@lucide/vue';
+import { ExternalLink, LogOut, Plus, RotateCcw } from '@lucide/vue';
 
 defineProps({
+  user: { type: Object, default: null },
+  editable: { type: Boolean, default: true },
+  busy: Boolean,
   totalTasks: {
     type: Number,
     required: true,
   },
 });
 
-const emit = defineEmits(['create-task', 'reset-board']);
+const emit = defineEmits(['create-task', 'reset-board', 'logout']);
 </script>
 
 <template>
@@ -22,9 +25,11 @@ const emit = defineEmits(['create-task', 'reset-board']);
     </a>
 
     <div class="header-actions">
+      <span v-if="user" class="session-user">{{ user.displayName }}</span>
+      <button v-if="user" class="icon-button" type="button" title="Выйти" aria-label="Выйти" :disabled="busy" @click="emit('logout')"><LogOut :size="20" /></button>
       <a
         class="icon-button"
-        href="https://github.com/"
+        href="https://github.com/Vlad1k22/taskforge-kanban"
         target="_blank"
         rel="noreferrer"
         aria-label="GitHub"
@@ -32,10 +37,10 @@ const emit = defineEmits(['create-task', 'reset-board']);
       >
         <ExternalLink :size="20" aria-hidden="true" />
       </a>
-      <button class="icon-button" type="button" @click="emit('reset-board')" aria-label="Сбросить доску" title="Сбросить доску">
+      <button v-if="editable" class="icon-button" type="button" :disabled="busy" @click="emit('reset-board')" aria-label="Сбросить доску" title="Сбросить доску">
         <RotateCcw :size="20" aria-hidden="true" />
       </button>
-      <button class="button button--primary" type="button" @click="emit('create-task')">
+      <button v-if="editable" class="button button--primary" type="button" :disabled="busy" @click="emit('create-task')">
         <Plus :size="19" aria-hidden="true" />
         Новая задача
       </button>

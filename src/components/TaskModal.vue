@@ -3,6 +3,8 @@ import { computed, reactive, watch } from 'vue';
 import { Save, Trash2, X } from '@lucide/vue';
 
 const props = defineProps({
+  busy: Boolean,
+  error: { type: String, default: '' },
   task: {
     type: Object,
     default: null,
@@ -37,7 +39,7 @@ const form = reactive({
 });
 
 const title = computed(() => (props.task?.id ? 'Редактировать задачу' : 'Новая задача'));
-const canSave = computed(() => form.title.trim().length >= 3 && form.assignee.trim().length >= 2);
+const canSave = computed(() => !props.busy && form.title.trim().length >= 3 && form.assignee.trim().length >= 2);
 
 watch(
   () => props.task,
@@ -163,7 +165,7 @@ function submit() {
           </label>
 
           <footer class="task-modal__actions">
-            <button v-if="task?.id" class="button button--danger" type="button" @click="emit('delete', task.id)">
+            <button v-if="task?.id" class="button button--danger" type="button" :disabled="busy" @click="emit('delete', task.id)">
               <Trash2 :size="18" aria-hidden="true" />
               Удалить
             </button>
@@ -172,6 +174,7 @@ function submit() {
               Сохранить
             </button>
           </footer>
+          <p v-if="error" class="danger" role="alert">{{ error }}</p>
         </form>
       </section>
     </div>
