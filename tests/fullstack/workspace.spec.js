@@ -91,7 +91,12 @@ test('mobile account and board controls stay usable', async ({ page }) => {
   const dialog = await fillTask(page, 'Мобильная задача');
   await dialog.getByRole('button', { name: 'Сохранить' }).click();
   await expect(page.getByRole('article', { name: 'Мобильная задача' })).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+  const layout = await page.evaluate(() => ({
+    width: document.documentElement.scrollWidth, viewport: window.innerWidth,
+    overflowing: [...document.querySelectorAll('body *')].filter((element) => !element.closest('.board') && element.getBoundingClientRect().right > window.innerWidth)
+      .map((element) => ({ tag: element.tagName, class: element.className, right: element.getBoundingClientRect().right })),
+  }));
+  expect(layout.width, JSON.stringify(layout)).toBeLessThanOrEqual(layout.viewport);
   await page.screenshot({ path: 'test-results-fullstack/mobile.png', fullPage: true });
 });
 

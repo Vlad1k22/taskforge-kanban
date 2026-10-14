@@ -303,6 +303,7 @@ main {
 
 .search-field input {
   width: 100%;
+  min-width: 0;
   border: 0;
   outline: 0;
   background: transparent;
@@ -587,7 +588,7 @@ main {
   .app-header,
   .intro-panel {
     align-items: stretch;
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .app-header {
@@ -607,7 +608,7 @@ main {
   }
 
   .intro-panel h1 {
-    font-size: clamp(2.8rem, 16vw, 4rem);
+    font-size: 44px;
   }
 
   .stats-panel {
